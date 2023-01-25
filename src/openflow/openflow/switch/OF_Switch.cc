@@ -42,8 +42,9 @@ OF_Switch::~OF_Switch(){
         if (elem.mac != nullptr) {
             auto gateO = elem.mac->gate("phys$o");
             auto gateI = elem.mac->gate("phys$i");
+            //auto gateNext = gateI->getPreviousGate();
+            //gateNext->disconnect();
             gateO->disconnect();
-            gateI->disconnect();
         }
     }
 }
@@ -393,7 +394,7 @@ static bool chekIcmpEchoRequest(Packet *pkt, int &seqNumber, int &identifier) {
     PacketDissector::PduTreeBuilder pduTreeBuilder;
     auto packetProtocolTag = pkt->findTag<PacketProtocolTag>();
     auto protocol = packetProtocolTag != nullptr ? packetProtocolTag->getProtocol() : nullptr;
-    PacketDissector packetDissector(ProtocolDissectorRegistry::globalRegistry, pduTreeBuilder);
+    PacketDissector packetDissector(ProtocolDissectorRegistry::getInstance(), pduTreeBuilder);
     packetDissector.dissectPacket(pkt, protocol);
 
     auto& protocolDataUnit = pduTreeBuilder.getTopLevelPdu();
