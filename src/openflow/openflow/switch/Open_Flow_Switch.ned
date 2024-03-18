@@ -3,13 +3,13 @@
 package openflow.openflow.switch;
 
 import inet.linklayer.contract.IWiredInterface;
-import inet.linklayer.ethernet.EthernetInterface;
+import inet.linklayer.ethernet.basic.EthernetInterface;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.contract.INetworkLayer;
 import inet.networklayer.contract.IRoutingTable;
 import inet.transportlayer.contract.ITcp;
 import inet.common.MessageDispatcher;
-import inet.linklayer.ethernet.contract.IEthernetLayer;
+import inet.linklayer.contract.IEthernetLayer;
 import inet.protocolelement.contract.IProtocolLayer;
 
 module Open_Flow_Switch
@@ -150,13 +150,14 @@ module Open_Flow_Switch
 
         cb.out++ --> bl.in++ if !exists(bridging);
         bl.out++ --> cb.in++ if !exists(bridging);
-
+        
+        bridging.lowerLayerOut --> bl.in++ if exists(bridging);
+        bl.out++ --> bridging.lowerLayerIn if exists(bridging);
 
         tn.out++ --> ipv4.transportIn;
         tn.in++ <-- ipv4.transportOut;
 
-        bridging.lowerLayerOut --> bl.in++ if exists(bridging);
-        bl.out++ --> bridging.lowerLayerIn if exists(bridging);
+
 
         cb.out++ --> nl.in++;
         cb.in++ <-- nl.out++;

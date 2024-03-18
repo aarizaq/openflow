@@ -1,13 +1,13 @@
 
 
 package openflow.hyperflow;
-import inet.linklayer.ethernet.EthernetInterface;
+import inet.linklayer.contract.IEthernetInterface;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.contract.INetworkLayer;
 import inet.networklayer.contract.IRoutingTable;
 import inet.transportlayer.contract.ITcp;
 import inet.common.MessageDispatcher;
-import inet.linklayer.ethernet.contract.IEthernetLayer;
+import inet.linklayer.contract.IEthernetLayer;
 import inet.protocolelement.contract.IProtocolLayer;
 //
 // TODO documentation
@@ -87,7 +87,7 @@ module Hyper_Flow_Synchronizer
             parameters:
                 @display("p=352,249;q=queue");
         }
-        eth[sizeof(ethg)]: EthernetInterface {
+        eth[sizeof(ethg)]: <default("EthernetInterface")> like IEthernetInterface {
             parameters:
                 @display("p=374.4195,613.0605,row,90;q=txQueue");
         }

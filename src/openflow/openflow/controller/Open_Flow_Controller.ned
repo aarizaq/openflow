@@ -2,14 +2,14 @@
 
 package openflow.openflow.controller;
 import inet.applications.contract.IApp;
-import inet.linklayer.ethernet.EthernetInterface;
+import inet.linklayer.ethernet.basic.EthernetInterface;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.contract.INetworkLayer;
 import inet.networklayer.contract.IRoutingTable;
 import inet.transportlayer.contract.ITcp;
 import openflow.controllerApps.AbstractControllerApp;
 import inet.common.MessageDispatcher;
-import inet.linklayer.ethernet.contract.IEthernetLayer;
+import inet.linklayer.contract.IEthernetLayer;
 import inet.protocolelement.contract.IProtocolLayer;
 //
 // TODO documentation
